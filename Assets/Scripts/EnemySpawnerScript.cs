@@ -1,16 +1,33 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
+    public GameObject objectToSpawn;//Check
+    public int spawnLimit;
+    public Vector3 spawnLocation;//Check
+    public float spawnCool_Down;//Check
+
+    private int spawnCounter;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(ObjectSpawner()); 
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator ObjectSpawner()
     {
-        
+        while (spawnCool_Down > 0)
+        {
+            spawnLocation = new Vector3(Random.Range(10f, -10f), 6, 0);
+            if(spawnCounter > spawnLimit)
+            {
+                spawnCounter = spawnCounter + 1;
+                Instantiate(objectToSpawn, spawnLocation, transform.rotation);
+            }
+            yield return new WaitForSeconds(spawnCool_Down);
+        }
+        yield return null;
     }
 }
