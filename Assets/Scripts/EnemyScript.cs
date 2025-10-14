@@ -1,12 +1,17 @@
-using UnityEngine;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 public class EnemyScript : MonoBehaviour
 {
+    public GameObject enemyLaser;
+    //Variablés
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        StartCoroutine(laser());
     }
 
     // Update is called once per frame
@@ -23,16 +28,18 @@ public class EnemyScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
-        {
-            other.transform.GetComponent<PlayerMovement>().TakeDamage();
-        }
-
         if (other.tag == "Laser")
         {
             Destroy(gameObject);
         }
     }
-
-
+    IEnumerator laser()
+    {
+        while (true) 
+        {
+            Instantiate(enemyLaser, new Vector3(transform.position.x, transform.position.y - 2, 0), Quaternion.identity);
+          
+            yield return new WaitForSeconds(2);
+        }
+    }
 }

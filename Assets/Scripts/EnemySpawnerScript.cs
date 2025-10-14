@@ -4,11 +4,11 @@ using UnityEngine;
 public class EnemySpawnerScript : MonoBehaviour
 {
     public GameObject objectToSpawn;//Check
-    public int spawnLimit;
+    public int spawnLimit; //Check
     public Vector3 spawnLocation;//Check
     public float spawnCool_Down;//Check
 
-    private int spawnCounter;
+    private int spawnCounter = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +21,7 @@ public class EnemySpawnerScript : MonoBehaviour
         while (spawnCool_Down > 0)
         {
             spawnLocation = new Vector3(Random.Range(10f, -10f), 6, 0);
-            if(spawnCounter > spawnLimit)
+            if(spawnCounter < spawnLimit)
             {
                 spawnCounter = spawnCounter + 1;
                 Instantiate(objectToSpawn, spawnLocation, transform.rotation);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int playerHealth;
+    public int playerHealth = 3;
     public GameObject Laser;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(Laser,transform.position +new Vector3(0, 1, 0),transform.rotation);
+            Instantiate(Laser,transform.position +new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
         }
         //Laser schüt
 
@@ -49,18 +49,24 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        playerHealth--;
+
         //CHANGE LATER PLEEEASE
         Debug.Log("Player health: " + playerHealth);
+
+
+        if (other.tag == "Enemy")
+        {
+            TakeDamage();
+        }
+    }
+    public void TakeDamage()
+    {
+        playerHealth = playerHealth - 1;
 
         if (playerHealth < 0)
         {
             Destroy(gameObject);
         }
     }
-    public void TakeDamage()
-    {
-        playerHealth = playerHealth - 1;
-    }
-  
+
 }
