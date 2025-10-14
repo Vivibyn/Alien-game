@@ -47,10 +47,9 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Hit: " + other);
         if (other.tag == "Laser")
         {
-            Destroy(gameObject);
+            TakeDamage();
         }
 
-        //CHANGE LATER PLEEEASE
         Debug.Log("Player health: " + playerHealth);
 
 
@@ -66,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerHealth < 0)
         {
             Destroy(gameObject);
-        }
+        }//bastard isn't working for some reason
     }
 
 }

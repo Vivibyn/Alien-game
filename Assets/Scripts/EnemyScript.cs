@@ -37,7 +37,7 @@ public class EnemyScript : MonoBehaviour
     {
         while (true) 
         {
-            Instantiate(enemyLaser, new Vector3(transform.position.x, transform.position.y - 2, 0), Quaternion.identity);
+            Instantiate(enemyLaser, new Vector3(transform.position.x, transform.position.y - 0.6f, 0), Quaternion.identity);
           
             yield return new WaitForSeconds(2);
         }
