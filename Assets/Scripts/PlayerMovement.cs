@@ -1,11 +1,14 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public int playerHealth = 3;
     public GameObject Laser;
+
+    public GameObject healthContainer;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -65,7 +68,9 @@ public class PlayerMovement : MonoBehaviour
         if (playerHealth < 0)
         {
             Destroy(gameObject);
-        }//bastard isn't working for some reason
+        }
+
+        healthContainer.GetComponent<HealthCounter>().playerHealthCounter = playerHealth; 
     }
 
 }

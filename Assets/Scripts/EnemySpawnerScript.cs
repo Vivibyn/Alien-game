@@ -20,7 +20,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         while (spawnCool_Down > 0)
         {
-            spawnLocation = new Vector3(Random.Range(10f, -10f), 6, 0);
+            spawnLocation = new Vector3(Random.Range(11f, -11f), 6, 0);
             if(spawnCounter < spawnLimit)
             {
                 spawnCounter = spawnCounter + 1;
